@@ -1,0 +1,237 @@
+:root {
+  --bg: #0f1724;
+  --card: #0b1220;
+  --muted: #94a3b8;
+  --accent: #7c3aed;
+  --glass: rgba(255, 255, 255, 0.03);
+  --success: #16a34a;
+}
+
+body {
+  background: linear-gradient(180deg, var(--bg), #071029);
+  color: #e6eef8;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+  margin: 0;
+  padding: 18px;
+}
+
+.report-container {
+  max-width: 1100px;
+  margin: 12px auto;
+  padding: 18px;
+}
+
+.report-content {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 30px rgba(2, 6, 23, 0.6);
+}
+
+.report-header h1 {
+  margin: 0 0 8px 0;
+  font-size: 1.35rem;
+}
+.personal-info-box {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.info-row {
+  background: var(--glass);
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--muted);
+}
+.label {
+  font-weight: 600;
+  margin-right: 8px;
+  color: #cfe3ff;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.06)
+  );
+  margin: 16px 0;
+}
+
+.core-numbers-section .numbers-grid {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.number-card {
+  background: var(--card);
+  padding: 14px;
+  border-radius: 10px;
+  width: 220px;
+  box-shadow: inset 0 -4px 10px rgba(0, 0, 0, 0.45);
+}
+.number-value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+.number-title {
+  color: var(--muted);
+  font-weight: 600;
+}
+.number-description {
+  margin-top: 8px;
+  color: #cfe3ff;
+}
+
+.grids-section .grids-container {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.grid-wrapper {
+  flex: 1;
+  min-width: 260px;
+}
+.grid-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.grid-cell {
+  width: 96px;
+  height: 96px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 8px;
+  padding: 8px;
+  color: #071029;
+  font-weight: 700;
+}
+.grid-cell.missing {
+  outline: 2px dashed rgba(244, 67, 54, 0.3);
+}
+.grid-cell.repeated {
+  box-shadow: inset 0 -4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.grid-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+.legend-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--muted);
+}
+.legend-item .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+}
+.legend-item.missing .dot {
+  background: #ef4444;
+}
+
+.analysis-section .analysis-card {
+  background: var(--card);
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+.detail-box {
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+.recommendations-section .recommendation-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--glass);
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.rec-icon {
+  color: goldenrod;
+}
+
+.interpretations-section .interpretation-cards {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.interpretation-card {
+  background: var(--card);
+  padding: 12px;
+  border-radius: 8px;
+  min-width: 240px;
+}
+
+.pdf-button {
+  margin-top: 12px;
+  background: linear-gradient(90deg, var(--accent), #4f46e5);
+  color: white;
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width: 720px) {
+  .number-card {
+    width: 100%;
+  }
+  .grid-cell {
+    width: 72px;
+    height: 72px;
+  }
+  .grid-wrapper {
+    min-width: 180px;
+  }
+}
+/* Print-friendly rules */
+@media print {
+  body {
+    background: #000 !important;
+    color: #000 !important;
+  }
+  .report-container,
+  .report-content {
+    box-shadow: none !important;
+    background: #030303 !important;
+    color: #000 !important;
+  }
+  .pdf-button {
+    display: none !important;
+  }
+  .grid-cell {
+    color: #000 !important;
+  }
+  /* Avoid splitting cards across pages */
+  .report-content,
+  .number-card,
+  .analysis-card,
+  .interpretation-card,
+  .recommendation-item {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  /* Ensure each major section starts on a new page if needed */
+  .interpretations-section {
+    page-break-before: always;
+  }
+}
